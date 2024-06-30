@@ -23,6 +23,7 @@ public class ModCreativeTabs {
                                 //items
                                 output.accept(ModItems.RAW_CEBBITE_ORE.get());
                                 output.accept(ModItems.CEBBITE_INGOT.get());
+                                output.accept(ModItems.CEBBITE_PICKAXE.get());
                                 //blocks
                                 output.accept(ModBlocks.CEBBITE_ORE.get());
                                 output.accept(ModBlocks.DEEPSLATE_CEBBITE_ORE.get());

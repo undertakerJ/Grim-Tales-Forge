@@ -1,9 +1,11 @@
 {
   "item.grimtales.raw_cebbite_ore": "Raw Cebbite Ore",
   "item.grimtales.cebbite_ingot": "Cebbite Ingot",
+  "item.grimtales.cebbite_pickaxe": "Cebbite Pickaxe",
   "block.grimtales.cebbite_ore": "Cebbite Ore",
   "block.grimtales.cebbite_block": "Cebbite Block",
   "block.grimtales.sculk_cebbite_ore": "Sculk Cebbite Ore",
   "block.grimtales.deepslate_cebbite_ore": "Deepslate Cebbite Ore",
+  "sounds.grimtales.troll_laugh": "Troll laughing",
   "creativetab.grimtales_tab": "Grim Tales"
 }

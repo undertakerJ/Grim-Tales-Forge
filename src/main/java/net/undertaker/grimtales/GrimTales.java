@@ -19,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.undertaker.grimtales.block.ModBlocks;
 import net.undertaker.grimtales.item.ModCreativeTabs;
 import net.undertaker.grimtales.item.ModItems;
+import net.undertaker.grimtales.sound.ModSounds;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -36,6 +37,7 @@ public class GrimTales
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
