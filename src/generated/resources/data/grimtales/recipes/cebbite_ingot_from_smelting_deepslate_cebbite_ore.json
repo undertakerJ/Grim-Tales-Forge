@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "cebbite",
+  "ingredient": {
+    "item": "grimtales:deepslate_cebbite_ore"
+  },
+  "result": "grimtales:cebbite_ingot"
+}
