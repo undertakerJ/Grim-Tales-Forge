@@ -2,8 +2,10 @@ package net.undertaker.grimtales.item.custom;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.telemetry.events.WorldUnloadEvent;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
@@ -18,6 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -27,6 +30,7 @@ import net.minecraft.world.scores.PlayerTeam;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -47,8 +51,6 @@ public class CebbitePickaxeItem extends PickaxeItem {
 
         BlockPos posClicked = context.getClickedPos();
         Level level = context.getLevel();
-        level.playSeededSound(null, posClicked.getX(), posClicked.getZ(), posClicked.getY(),
-                ModSounds.TROLL_LAUGH.get(), SoundSource.AMBIENT, 1f, 1f, 0);
         if (!level.isClientSide()) {
             int searchRadius = 12;
             for (int x = posClicked.getX() - searchRadius; x <= posClicked.getX() + searchRadius; x++) {
@@ -89,7 +91,7 @@ public class CebbitePickaxeItem extends PickaxeItem {
             if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120 * 20, 1));
                 player.getCooldowns().addCooldown(this, 20 * 120);
-
+                level.playSound(null, posClicked, ModSounds.TROLL_LAUGH.get(), SoundSource.AMBIENT, 1,1);
             } else {
 
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15 * 20, 0));
@@ -103,7 +105,18 @@ public class CebbitePickaxeItem extends PickaxeItem {
         return super.useOn(context);
     }
 
+    @Override
+    public void appendHoverText(ItemStack itemStack, @org.jetbrains.annotations.Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
+        if(Screen.hasShiftDown()){
+            components.add(Component.translatable("tooltip.cebbite_pickaxe"));
+            components.add(Component.translatable("tooltip.cebbite_pickaxe1"));
+            components.add(Component.translatable("tooltip.cebbite_pickaxe2").withStyle(ChatFormatting.DARK_GRAY));
 
+        } else {
+            components.add(Component.translatable("tooltip.press_shift").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        super.appendHoverText(itemStack, level, components, tooltipFlag);
+    }
     private static void removeAllSlimes() {
         for (LivingEntity slime : new ArrayList<>(slimes)) {
             if (slime != null) {

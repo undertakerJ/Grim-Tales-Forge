@@ -1,6 +1,7 @@
 package net.undertaker.grimtales.item;
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,7 +19,7 @@ public class ModItems {
     public static final RegistryObject<Item> CEBBITE_INGOT = ITEMS.register("cebbite_ingot",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CEBBITE_PICKAXE = ITEMS.register("cebbite_pickaxe",
-            () -> new CebbitePickaxeItem(Tiers.NETHERITE, 1, 0, new Item.Properties()));
+            () -> new CebbitePickaxeItem(ModToolTiers.CEBBITE, 1, -3, new Item.Properties().rarity(Rarity.RARE)));
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }
