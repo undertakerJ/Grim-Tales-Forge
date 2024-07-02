@@ -17,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.undertaker.grimtales.block.ModBlocks;
+import net.undertaker.grimtales.effect.ModEffects;
 import net.undertaker.grimtales.item.ModCreativeTabs;
 import net.undertaker.grimtales.item.ModItems;
 import net.undertaker.grimtales.sound.ModSounds;
@@ -38,6 +39,7 @@ public class GrimTales
         ModCreativeTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModEffects.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

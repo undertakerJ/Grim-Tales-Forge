@@ -2,6 +2,7 @@
   "item.grimtales.raw_cebbite_ore": "Raw Cebbite Ore",
   "item.grimtales.cebbite_ingot": "Cebbite Ingot",
   "item.grimtales.cebbite_pickaxe": "Cebbite Pickaxe",
+  "item.grimtales.cebbite_sword": "Cebbite Sword",
 
   "block.grimtales.cebbite_ore": "Cebbite Ore",
   "block.grimtales.cebbite_block": "Cebbite Block",
@@ -12,7 +13,9 @@
   "tooltip.cebbite_pickaxe": "Shows nearby ores in 12 block radius on use.",
   "tooltip.cebbite_pickaxe1": "After use, player receive Mining Fatigue.",
   "tooltip.cebbite_pickaxe2": "Better not to spam it.",
+
   "sounds.grimtales.troll_laugh": "Troll laughing",
 
+  "effect.grimtales.entropy_effect": "Entropy Effect",
   "creativetab.grimtales_tab": "Grim Tales"
 }

@@ -20,6 +20,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.CEBBITE_INGOT);
         simpleItem(ModItems.RAW_CEBBITE_ORE);
         handheldItem(ModItems.CEBBITE_PICKAXE);
+        handheldItem(ModItems.CEBBITE_SWORD);
 
     }
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
