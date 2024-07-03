@@ -17,20 +17,17 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ModItems.CEBBITE_INGOT);
-        simpleItem(ModItems.RAW_CEBBITE_ORE);
-        handheldItem(ModItems.CEBBITE_PICKAXE);
-        handheldItem(ModItems.CEBBITE_SWORD);
+        registerModel(ModItems.CEBBITE_INGOT, "generated");
+        registerModel(ModItems.RAW_CEBBITE_ORE, "generated");
+        registerModel(ModItems.CEBBITE_PICKAXE, "handheld");
+        registerModel(ModItems.CEBBITE_SWORD, "handheld");
 
     }
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(GrimTales.MOD_ID,"item/" + item.getId().getPath()));
-    }
-    private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/handheld")).texture("layer0",
-                new ResourceLocation(GrimTales.MOD_ID,"item/" + item.getId().getPath()));
+    private ItemModelBuilder registerModel(RegistryObject<Item> item, String parent) {
+        ResourceLocation parentModel = new ResourceLocation("item/" + parent);
+        ResourceLocation texture =
+                new ResourceLocation(GrimTales.MOD_ID, "item/" + item.getId().getPath());
+        return withExistingParent(item.getId().getPath(), parentModel).texture("layer0", texture);
     }
 }
+

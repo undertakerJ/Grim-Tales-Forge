@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.item.custom.CebbitePickaxeItem;
 import net.undertaker.grimtales.item.custom.CebbiteSwordItem;
+import net.undertaker.grimtales.item.custom.TestSwordItem;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -19,10 +20,12 @@ public class ModItems {
     public static final RegistryObject<Item> CEBBITE_INGOT = ITEMS.register("cebbite_ingot",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CEBBITE_PICKAXE = ITEMS.register("cebbite_pickaxe",
-            () -> new CebbitePickaxeItem(ModToolTiers.CEBBITE, 1, -3f, new Item.Properties().rarity(Rarity.RARE)));
+            CebbitePickaxeItem::new);
     public static final RegistryObject<Item> CEBBITE_SWORD = ITEMS.register("cebbite_sword",
-            () -> new CebbiteSwordItem(ModToolTiers.CEBBITE, 4, -2.4f, new Item.Properties().rarity(Rarity.RARE)));
-    public static void register(IEventBus eventBus){
+            CebbiteSwordItem::new);
+    public static final RegistryObject<Item> TEST_SWORD = ITEMS.register("test_sword",
+            TestSwordItem::new);
+    public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
 }

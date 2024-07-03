@@ -18,18 +18,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.undertaker.grimtales.block.ModBlocks;
 import net.undertaker.grimtales.effect.ModEffects;
+import net.undertaker.grimtales.enchantment.ModEnchantments;
 import net.undertaker.grimtales.item.ModCreativeTabs;
 import net.undertaker.grimtales.item.ModItems;
 import net.undertaker.grimtales.sound.ModSounds;
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(GrimTales.MOD_ID)
 public class GrimTales
 {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "grimtales";
-    // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
     public GrimTales()
     {
@@ -40,6 +38,7 @@ public class GrimTales
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModEnchantments.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

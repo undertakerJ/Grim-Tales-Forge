@@ -16,6 +16,11 @@
 
   "sounds.grimtales.troll_laugh": "Troll laughing",
 
-  "effect.grimtales.entropy_effect": "Entropy Effect",
+  "effect.grimtales.entropy": "Entropy",
+  "effect.grimtales.blinkstrike": "Blinkstrike",
+  "effect.grimtales.armorshred": "Armor Shred",
+
+  "enchantment.grimtales.armor_shredder": "Armor Shredder",
+
   "creativetab.grimtales_tab": "Grim Tales"
 }

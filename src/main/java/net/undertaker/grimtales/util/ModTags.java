@@ -11,6 +11,7 @@ import net.undertaker.grimtales.GrimTales;
 public class ModTags {
     public static class Blocks{
         public static final TagKey<Block> NEEDS_CEBBITE_TOOL = tag("needs_cebbite_tool");
+        public static final TagKey<Block> CEBBITE_ORES = tag("cebbite_ores");
 
         private static TagKey<Block> tag(String key){
             return BlockTags.create(new ResourceLocation(GrimTales.MOD_ID, key));
