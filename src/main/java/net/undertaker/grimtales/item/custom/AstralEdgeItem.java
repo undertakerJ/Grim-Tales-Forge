@@ -10,9 +10,9 @@ import net.minecraft.world.level.Level;
 import net.undertaker.grimtales.effect.ModEffects;
 import org.jetbrains.annotations.NotNull;
 
-public class TestSwordItem extends SwordItem {
+public class AstralEdgeItem extends SwordItem {
 
-    public TestSwordItem() {
+    public AstralEdgeItem() {
         super(Tiers.NETHERITE, 4, -2.4f, new Item.Properties().rarity(Rarity.RARE));
     }
     @Override

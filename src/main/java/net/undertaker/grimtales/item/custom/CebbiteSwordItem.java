@@ -21,7 +21,7 @@ import net.undertaker.grimtales.item.ModToolTiers;
 public class CebbiteSwordItem extends SwordItem {
 
     public CebbiteSwordItem() {
-        super(ModToolTiers.CEBBITE, -4, -2.4f, new Item.Properties().rarity(Rarity.RARE));
+        super(ModToolTiers.CEBBITE, 4, -2.4f, new Item.Properties().rarity(Rarity.RARE));
     }
 
     @Override

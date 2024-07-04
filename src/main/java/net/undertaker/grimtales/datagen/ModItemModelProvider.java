@@ -21,6 +21,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         registerModel(ModItems.RAW_CEBBITE_ORE, "generated");
         registerModel(ModItems.CEBBITE_PICKAXE, "handheld");
         registerModel(ModItems.CEBBITE_SWORD, "handheld");
+        registerModel(ModItems.CEBBITE_AXE, "handheld");
+        registerModel(ModItems.ASTRAL_EDGE, "handheld");
 
     }
     private ItemModelBuilder registerModel(RegistryObject<Item> item, String parent) {
