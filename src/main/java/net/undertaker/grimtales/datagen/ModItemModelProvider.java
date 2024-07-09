@@ -11,25 +11,28 @@ import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.item.ModItems;
 
 public class ModItemModelProvider extends ItemModelProvider {
-    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, GrimTales.MOD_ID, existingFileHelper);
-    }
+  public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+    super(output, GrimTales.MOD_ID, existingFileHelper);
+  }
 
-    @Override
-    protected void registerModels() {
-        registerModel(ModItems.CEBBITE_INGOT, "generated");
-        registerModel(ModItems.RAW_CEBBITE_ORE, "generated");
-        registerModel(ModItems.CEBBITE_PICKAXE, "handheld");
-        registerModel(ModItems.CEBBITE_SWORD, "handheld");
-        registerModel(ModItems.CEBBITE_AXE, "handheld");
-        registerModel(ModItems.ASTRAL_EDGE, "handheld");
+  @Override
+  protected void registerModels() {
+    registerModel(ModItems.CEBBITE_INGOT, "generated");
+    registerModel(ModItems.RAW_CEBBITE_ORE, "generated");
+    registerModel(ModItems.ASTRALITE_INGOT, "generated");
+    registerModel(ModItems.NEGRI_PIDORASI_MUSIC_DISK, "generated");
+    registerModel(ModItems.CEBBITE_PICKAXE, "handheld");
+    registerModel(ModItems.CEBBITE_SWORD, "handheld");
+    registerModel(ModItems.CEBBITE_AXE, "handheld");
+    registerModel(ModItems.CEBBITE_SHOVEL, "handheld");
+    registerModel(ModItems.CEBBITE_HOE, "handheld");
+    registerModel(ModItems.ASTRAL_EDGE, "handheld");
+  }
 
-    }
-    private ItemModelBuilder registerModel(RegistryObject<Item> item, String parent) {
-        ResourceLocation parentModel = new ResourceLocation("item/" + parent);
-        ResourceLocation texture =
-                new ResourceLocation(GrimTales.MOD_ID, "item/" + item.getId().getPath());
-        return withExistingParent(item.getId().getPath(), parentModel).texture("layer0", texture);
-    }
+  private ItemModelBuilder registerModel(RegistryObject<Item> item, String parent) {
+    ResourceLocation parentModel = new ResourceLocation("item/" + parent);
+    ResourceLocation texture =
+        new ResourceLocation(GrimTales.MOD_ID, "item/" + item.getId().getPath());
+    return withExistingParent(item.getId().getPath(), parentModel).texture("layer0", texture);
+  }
 }
-

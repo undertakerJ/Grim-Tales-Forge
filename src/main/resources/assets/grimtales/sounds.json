@@ -4,5 +4,13 @@
     "sounds": [
       "grimtales:troll_laugh"
     ]
-  }
+  },
+ "negri_pidorasi": {
+   "sounds": [
+     {
+       "name":"grimtales:negri_pidorasi",
+       "stream": true
+     }
+   ]
+ }
 }

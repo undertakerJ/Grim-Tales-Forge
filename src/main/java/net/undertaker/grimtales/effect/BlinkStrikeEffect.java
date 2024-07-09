@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.undertaker.grimtales.item.ModItems;
 import org.jetbrains.annotations.NotNull;
 
 public class BlinkStrikeEffect extends MobEffect {
@@ -79,6 +80,8 @@ public class BlinkStrikeEffect extends MobEffect {
         double z = positionTag.getDouble("Z");
         livingEntity.teleportTo(x, y, z);
         playerData.remove("BlinkStrikeTargets");
+        Player player = (Player) livingEntity;
+        player.getCooldowns().addCooldown(ModItems.ASTRAL_EDGE.get(), 15*20);
     }
 
     @Override

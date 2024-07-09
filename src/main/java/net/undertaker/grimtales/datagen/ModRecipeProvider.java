@@ -2,10 +2,15 @@ package net.undertaker.grimtales.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.undertaker.grimtales.GrimTales;
@@ -37,6 +42,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('C', ModItems.CEBBITE_INGOT.get())
                 .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
                 .save(consumer);
+        shapedItemStack(RecipeCategory.TOOLS, ModItems.CEBBITE_PICKAXE.get().getDefaultInstance(), 0)
+                .pattern("CCC")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('C', ModItems.CEBBITE_INGOT.get())
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
+                .save(consumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CEBBITE_INGOT.get(),9)
                 .requires(ModBlocks.CEBBITE_BLOCK.get())
@@ -60,5 +73,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             SimpleCookingRecipeBuilder.generic(Ingredient.of(new ItemLike[]{itemlike}), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike)).save(pFinishedRecipeConsumer, GrimTales.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
         }
 
+    }
+
+
+    public static ShapedRecipeBuilder shapedItemStack(RecipeCategory pCategory, ItemStack pResult, int pCount) {
+    return new ShapedRecipeBuilder(pCategory, pResult.getItem(), pCount);
     }
 }

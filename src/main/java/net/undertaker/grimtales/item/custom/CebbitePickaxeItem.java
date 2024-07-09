@@ -39,12 +39,39 @@ public class CebbitePickaxeItem extends PickaxeItem {
   }
 
   @Override
+  public void appendHoverText(
+      ItemStack itemStack,
+      @org.jetbrains.annotations.Nullable Level level,
+      List<Component> components,
+      TooltipFlag tooltipFlag) {
+    if (Screen.hasShiftDown()) {
+      components.add(
+          Component.translatable("tooltip.cebbite_pickaxe").withStyle(ChatFormatting.GRAY));
+      components.add(
+          Component.translatable("tooltip.cebbite_pickaxe1").withStyle(ChatFormatting.GRAY));
+      components.add(
+          Component.translatable("tooltip.cebbite_pickaxe2").withStyle(ChatFormatting.GRAY));
+
+    } else {
+      components.add(
+          Component.translatable("tooltip.press_shift").withStyle(ChatFormatting.DARK_GRAY));
+    }
+    super.appendHoverText(itemStack, level, components, tooltipFlag);
+  }
+
+  @Override
   public InteractionResult useOn(UseOnContext context) {
 
     BlockPos posClicked = context.getClickedPos();
     Level level = context.getLevel();
-    if (!level.isClientSide()) {
-      int searchRadius = 12;
+    Player player = context.getPlayer();
+    if (!level.isClientSide() && player.isShiftKeyDown()) {
+      if (player.getRandom().nextFloat() <= 0.1f) {
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15 * 20, 0));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 0));
+        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 15 * 20, 0));
+      }
+      int searchRadius = 8;
       for (int x = posClicked.getX() - searchRadius; x <= posClicked.getX() + searchRadius; x++) {
         for (int y = posClicked.getY() - searchRadius; y < posClicked.getY() + searchRadius; y++) {
           for (int z = posClicked.getZ() - searchRadius;
@@ -54,7 +81,6 @@ public class CebbitePickaxeItem extends PickaxeItem {
             Slime slime = new Slime(EntityType.SLIME, level);
             BlockState blockState = level.getBlockState(pos);
             if (isOre(blockState)) {
-
               slime.setGlowingTag(true);
               slime.setSilent(true);
               slime.addEffect(
@@ -76,7 +102,6 @@ public class CebbitePickaxeItem extends PickaxeItem {
         }
       }
     }
-    Player player = context.getPlayer();
     player.getCooldowns().addCooldown(this, 20 * 5);
     if (!player.isCreative() || !player.isSpectator() && !level.isClientSide()) {
       if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
@@ -95,25 +120,6 @@ public class CebbitePickaxeItem extends PickaxeItem {
     }
 
     return super.useOn(context);
-  }
-
-  @Override
-  public void appendHoverText(
-      ItemStack itemStack,
-      @org.jetbrains.annotations.Nullable Level level,
-      List<Component> components,
-      TooltipFlag tooltipFlag) {
-    if (Screen.hasShiftDown()) {
-      components.add(Component.translatable("tooltip.cebbite_pickaxe"));
-      components.add(Component.translatable("tooltip.cebbite_pickaxe1"));
-      components.add(
-          Component.translatable("tooltip.cebbite_pickaxe2").withStyle(ChatFormatting.DARK_GRAY));
-
-    } else {
-      components.add(
-          Component.translatable("tooltip.press_shift").withStyle(ChatFormatting.DARK_GRAY));
-    }
-    super.appendHoverText(itemStack, level, components, tooltipFlag);
   }
 
   @SubscribeEvent
