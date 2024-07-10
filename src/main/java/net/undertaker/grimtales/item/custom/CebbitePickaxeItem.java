@@ -24,6 +24,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.undertaker.grimtales.GrimTales;
+import net.undertaker.grimtales.block.ModBlocks;
 import net.undertaker.grimtales.item.ModToolTiers;
 import net.undertaker.grimtales.sound.ModSounds;
 import net.undertaker.grimtales.util.ModTags;
@@ -178,7 +179,9 @@ public class CebbitePickaxeItem extends PickaxeItem {
     } else if (state.is(Tags.Blocks.ORES_COPPER)) {
       name = "Copper";
       color = ChatFormatting.GOLD;
-    } else if (state.is(ModTags.Blocks.CEBBITE_ORES)) {
+    } else if (state.is(ModBlocks.CEBBITE_ORE.get())
+        || state.is(ModBlocks.DEEPSLATE_CEBBITE_ORE.get())
+        || state.is(ModBlocks.SCULK_CEBBITE_ORE.get())) {
       name = "Cebbite";
       color = ChatFormatting.DARK_PURPLE;
     } else if (state.is(Blocks.NETHER_QUARTZ_ORE)) {

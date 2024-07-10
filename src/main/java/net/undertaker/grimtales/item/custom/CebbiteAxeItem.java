@@ -19,6 +19,7 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.undertaker.grimtales.GrimTales;
+import net.undertaker.grimtales.item.ModItems;
 import net.undertaker.grimtales.item.ModToolTiers;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +28,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = GrimTales.MOD_ID)
 public class CebbiteAxeItem extends AxeItem {
   public CebbiteAxeItem() {
-    super(ModToolTiers.CEBBITE, 5, -3.1f, new Properties().rarity(Rarity.RARE).fireResistant());
+    super(ModToolTiers.CEBBITE, 5, -3.1f, new Properties().rarity(Rarity.RARE));
   }
 
   @Override
@@ -54,10 +55,14 @@ public class CebbiteAxeItem extends AxeItem {
   public static void onBreak(BlockEvent.BreakEvent event) {
     BlockPos blockPos = event.getPos();
     Player player = event.getPlayer();
-    if (!player.level().isClientSide && !player.isCreative() && player.isShiftKeyDown()) {
+    if (!player.level().isClientSide
+        && !player.isCreative()
+        && player.isShiftKeyDown()
+        && player.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.CEBBITE_AXE.get())) {
       breakNearbyWood(player, blockPos);
     }
-    if (player.getRandom().nextFloat() <= 0.01f) {
+    if (player.getRandom().nextFloat() <= 0.01f
+        && player.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.CEBBITE_AXE.get())) {
       player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15 * 20, 0));
       player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 0));
       player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 15 * 20, 0));

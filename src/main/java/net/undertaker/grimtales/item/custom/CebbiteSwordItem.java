@@ -24,7 +24,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = GrimTales.MOD_ID)
 public class CebbiteSwordItem extends SwordItem {
 
     public CebbiteSwordItem() {

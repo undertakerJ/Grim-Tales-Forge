@@ -31,7 +31,7 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(deepslatereplacable, ModBlocks.DEEPSLATE_CEBBITE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(sculkreplacable, ModBlocks.SCULK_CEBBITE_ORE.get().defaultBlockState()));
 
-        register(context, OVERWORLD_CEBBITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldCebbiteOres, 8));
+        register(context, OVERWORLD_CEBBITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldCebbiteOres, 4));
     }
 
 

@@ -17,8 +17,16 @@ public class ModItemTagProvider extends ItemTagsProvider {
         super(p_275343_, p_275729_, p_275322_, GrimTales.MOD_ID, existingFileHelper);
     }
 
+
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.CEBBITE_HELMET.get())
+                .add(ModItems.CEBBITE_CHESTPLATE.get())
+                .add(ModItems.CEBBITE_LEGGINGS.get())
+                .add(ModItems.CEBBITE_BOOTS.get());
+
+
         this.tag(ItemTags.MUSIC_DISCS).add(ModItems.NEGRI_PIDORASI_MUSIC_DISK.get());
     }
 }

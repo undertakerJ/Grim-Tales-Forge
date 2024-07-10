@@ -25,27 +25,20 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
   @Override
   protected void addTags(@NotNull HolderLookup.Provider provider) {
-    tag(ModTags.Blocks.CEBBITE_ORES)
+    tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .add(ModBlocks.CEBBITE_ORE.get())
+        .add(ModBlocks.DEEPSLATE_CEBBITE_ORE.get())
+        .add(ModBlocks.SCULK_CEBBITE_ORE.get())
+        .add(ModBlocks.CEBBITE_BLOCK.get());
+    tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
         .add(ModBlocks.CEBBITE_ORE.get())
         .add(ModBlocks.DEEPSLATE_CEBBITE_ORE.get())
         .add(ModBlocks.SCULK_CEBBITE_ORE.get());
-    tag(BlockTags.MINEABLE_WITH_PICKAXE)
-        .addTag(ModTags.Blocks.CEBBITE_ORES)
-        .add(ModBlocks.CEBBITE_BLOCK.get());
-    tag(ModTags.Blocks.DIRT_LIKE)
-        .add(Blocks.DIRT)
-        .add(Blocks.GRASS_BLOCK)
-        .add(Blocks.GRAVEL)
-        .add(Blocks.COARSE_DIRT)
-        .add(Blocks.DIRT_PATH)
-        .add(Blocks.ROOTED_DIRT)
-        .add(Blocks.FARMLAND)
-        .add(Blocks.MUD)
-        .add(Blocks.MUDDY_MANGROVE_ROOTS)
-        .add(Blocks.MYCELIUM)
-        .add(Blocks.PODZOL);
-    tag(Tags.Blocks.NEEDS_NETHERITE_TOOL).addTag(ModTags.Blocks.CEBBITE_ORES);
-    tag(BlockTags.NEEDS_IRON_TOOL).add(ModBlocks.CEBBITE_BLOCK.get());
-    tag(Tags.Blocks.ORES).addTag(ModTags.Blocks.CEBBITE_ORES);
+    tag(BlockTags.NEEDS_IRON_TOOL)
+            .add(ModBlocks.CEBBITE_BLOCK.get());
+    tag(Tags.Blocks.ORES)
+        .add(ModBlocks.CEBBITE_ORE.get())
+        .add(ModBlocks.DEEPSLATE_CEBBITE_ORE.get())
+        .add(ModBlocks.SCULK_CEBBITE_ORE.get());
   }
 }

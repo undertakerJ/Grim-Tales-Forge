@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +18,7 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.undertaker.grimtales.GrimTales;
+import net.undertaker.grimtales.item.ModItems;
 import net.undertaker.grimtales.item.ModToolTiers;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,7 +27,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = GrimTales.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CebbiteShovelItem extends ShovelItem {
   public CebbiteShovelItem() {
-    super(ModToolTiers.CEBBITE, 1, -3, new Properties().rarity(Rarity.RARE).fireResistant());
+    super(ModToolTiers.CEBBITE, 1, -3, new Properties().rarity(Rarity.RARE));
   }
 
   @Override
@@ -44,8 +46,7 @@ public class CebbiteShovelItem extends ShovelItem {
   public static void onBreak(BlockEvent.BreakEvent event) {
     BlockPos blockPos = event.getPos();
     Player player = event.getPlayer();
-
-    if (!player.level().isClientSide) {
+    if (!player.level().isClientSide && player.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.CEBBITE_SHOVEL.get())) {
       if (player.getRandom().nextFloat() <= 0.001f) {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15 * 20, 0));
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 0));
