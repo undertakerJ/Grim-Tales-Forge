@@ -9,6 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.block.ModBlocks;
+import net.undertaker.grimtales.item.custom.EssenceCrystalItem;
 
 public class ModCreativeTabs {
   public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -27,6 +28,11 @@ public class ModCreativeTabs {
                         ModItems.ITEMS.getEntries().stream()
                             .map(RegistryObject::get)
                             .forEach(output::accept);
+                        for (String type : EssenceCrystalItem.ESSENCE_TYPES) {
+                          ItemStack stack = new ItemStack(ModItems.ESSENCE_CRYSTAL.get());
+                          EssenceCrystalItem.setEssence(stack, type, 10);
+                          output.accept(stack);
+                        }
                         // blocks
                         ModBlocks.BLOCKS.getEntries().stream()
                             .map(RegistryObject::get)

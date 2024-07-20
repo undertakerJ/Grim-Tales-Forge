@@ -49,6 +49,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     registerModel(ModItems.CEBBITE_SHOVEL, "handheld");
     registerModel(ModItems.CEBBITE_HOE, "handheld");
     registerModel(ModItems.ASTRAL_EDGE, "handheld");
+    registerModel(ModItems.ASTRALITE_SWORD, "handheld");
+    registerModel(ModItems.ESSENCE_CRYSTAL, "generated");
 
     trimmedArmorItem(ModItems.CEBBITE_BOOTS);
     trimmedArmorItem(ModItems.CEBBITE_LEGGINGS);

@@ -1,12 +1,16 @@
 package net.undertaker.grimtales.util;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.undertaker.grimtales.GrimTales;
+import net.undertaker.grimtales.effect.EntropyEffect;
 
 public class ModTags {
     public static class Blocks{
@@ -19,6 +23,11 @@ public class ModTags {
     public static class Items{
         private static TagKey<Item> tag(String key){
             return ItemTags.create(new ResourceLocation(GrimTales.MOD_ID, key));
+        }
+    }
+    public static class DamageTypes{
+        private static TagKey<DamageType> create(String key) {
+            return TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(GrimTales.MOD_ID, key));
         }
     }
 }

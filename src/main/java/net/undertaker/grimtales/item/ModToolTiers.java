@@ -16,4 +16,8 @@ public class ModToolTiers {
             new ForgeTier(5,2254,12f,4f, 30,
                     ModTags.Blocks.NEEDS_CEBBITE_TOOL, () -> Ingredient.of(ModItems.CEBBITE_INGOT.get())),
             new ResourceLocation(GrimTales.MOD_ID, "cebbite"), List.of(Tiers.NETHERITE), List.of());
+    public static final Tier ASTRALITE = TierSortingRegistry.registerTier(
+            new ForgeTier(6,1127,18f,4f, 35,
+                    ModTags.Blocks.NEEDS_CEBBITE_TOOL, () -> Ingredient.of(ModItems.ASTRALITE_INGOT.get())),
+            new ResourceLocation(GrimTales.MOD_ID, "astralite"), List.of(ModToolTiers.CEBBITE), List.of());
 }

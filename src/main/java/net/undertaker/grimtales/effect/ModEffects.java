@@ -14,7 +14,7 @@ public class ModEffects extends MobEffects {
       DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, GrimTales.MOD_ID);
 
   public static final RegistryObject<MobEffect> ENTROPY_EFFECT =
-      MOB_EFFECTS.register("entropy", EntropyEffect::new);
+      MOB_EFFECTS.register("entropy_effect", EntropyEffect::new);
   public static final RegistryObject<MobEffect> BLINKSTRIKE =
       MOB_EFFECTS.register("blinkstrike", BlinkStrikeEffect::new);
 public static final RegistryObject<MobEffect> ARMORSHRED =

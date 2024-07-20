@@ -13,20 +13,22 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagProvider extends ItemTagsProvider {
-    public ModItemTagProvider(PackOutput p_275343_, CompletableFuture<HolderLookup.Provider> p_275729_, CompletableFuture<TagLookup<Block>> p_275322_,  @Nullable ExistingFileHelper existingFileHelper) {
-        super(p_275343_, p_275729_, p_275322_, GrimTales.MOD_ID, existingFileHelper);
-    }
+  public ModItemTagProvider(
+      PackOutput p_275343_,
+      CompletableFuture<HolderLookup.Provider> p_275729_,
+      CompletableFuture<TagLookup<Block>> p_275322_,
+      @Nullable ExistingFileHelper existingFileHelper) {
+    super(p_275343_, p_275729_, p_275322_, GrimTales.MOD_ID, existingFileHelper);
+  }
 
+  @Override
+  protected void addTags(HolderLookup.Provider provider) {
+    tag(ItemTags.TRIMMABLE_ARMOR)
+        .add(ModItems.CEBBITE_HELMET.get())
+        .add(ModItems.CEBBITE_CHESTPLATE.get())
+        .add(ModItems.CEBBITE_LEGGINGS.get())
+        .add(ModItems.CEBBITE_BOOTS.get());
 
-    @Override
-    protected void addTags(HolderLookup.Provider provider) {
-        tag(ItemTags.TRIMMABLE_ARMOR)
-                .add(ModItems.CEBBITE_HELMET.get())
-                .add(ModItems.CEBBITE_CHESTPLATE.get())
-                .add(ModItems.CEBBITE_LEGGINGS.get())
-                .add(ModItems.CEBBITE_BOOTS.get());
-
-
-        this.tag(ItemTags.MUSIC_DISCS).add(ModItems.NEGRI_PIDORASI_MUSIC_DISK.get());
-    }
+    this.tag(ItemTags.MUSIC_DISCS).add(ModItems.NEGRI_PIDORASI_MUSIC_DISK.get());
+  }
 }

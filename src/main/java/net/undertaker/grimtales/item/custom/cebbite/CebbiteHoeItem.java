@@ -1,4 +1,4 @@
-package net.undertaker.grimtales.item.custom;
+package net.undertaker.grimtales.item.custom.cebbite;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;

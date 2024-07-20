@@ -1,4 +1,4 @@
-package net.undertaker.grimtales.item.custom;
+package net.undertaker.grimtales.item.custom.cebbite;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -27,9 +27,7 @@ import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.block.ModBlocks;
 import net.undertaker.grimtales.item.ModToolTiers;
 import net.undertaker.grimtales.sound.ModSounds;
-import net.undertaker.grimtales.util.ModTags;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = GrimTales.MOD_ID)
@@ -72,7 +70,7 @@ public class CebbitePickaxeItem extends PickaxeItem {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 0));
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 15 * 20, 0));
       }
-      int searchRadius = 8;
+      int searchRadius = 6;
       for (int x = posClicked.getX() - searchRadius; x <= posClicked.getX() + searchRadius; x++) {
         for (int y = posClicked.getY() - searchRadius; y < posClicked.getY() + searchRadius; y++) {
           for (int z = posClicked.getZ() - searchRadius;
@@ -104,7 +102,7 @@ public class CebbitePickaxeItem extends PickaxeItem {
       }
     }
     player.getCooldowns().addCooldown(this, 20 * 5);
-    if (!player.isCreative() || !player.isSpectator() && !level.isClientSide()) {
+    if (!player.isCreative() || !player.isSpectator() && !level.isClientSide() && player.isShiftKeyDown()) {
       if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120 * 20, 1));
         player.getCooldowns().addCooldown(this, 20 * 120);

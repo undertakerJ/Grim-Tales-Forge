@@ -12,7 +12,15 @@
   "item.grimtales.cebbite_leggings": "Cebbite Leggings",
   "item.grimtales.cebbite_chestplate": "Cebbite Chestplate",
   "item.grimtales.cebbite_helmet": "Cebbite Helmet",
+  "item.grimtales.astralite_sword": "Astralite Sword",
 
+  "item.grimtales.essence_crystal": "Essence Crystal",
+  "item.grimtales.essence_crystal.fire": "Fire Essence Crystal",
+  "item.grimtales.essence_crystal.water": "Water Essence Crystal",
+  "item.grimtales.essence_crystal.earth": "Earth Essence Crystal",
+  "item.grimtales.essence_crystal.air": "Air Essence Crystal",
+  "tooltip.grimtales.essence_amount": "Essence Amount: %s",
+  "tooltip.grimtales.essence_type": "Essence Type: %s",
 
   "item.grimtales.negri_pidorasi_music_disc": "NP Music Disc",
   "item.grimtales.negri_pidorasi_music_disc.desc": "Bad Piggies X MZLFF (CC0)",
@@ -22,8 +30,11 @@
   "block.grimtales.sculk_cebbite_ore": "Sculk Cebbite Ore",
   "block.grimtales.deepslate_cebbite_ore": "Deepslate Cebbite Ore",
 
+  "death.attack.grimtales_entropy_effect": "%1$s gone, reduced to atoms",
+
+
   "tooltip.press_shift": "Press Shift for more info",
-  "tooltip.cebbite_pickaxe": "Shows nearby ores in 8 block radius on Shift+RMB.",
+  "tooltip.cebbite_pickaxe": "Shows nearby ores in 6 block radius on Shift+RMB.",
   "tooltip.cebbite_pickaxe1": "After use, player receive Mining Fatigue.",
   "tooltip.cebbite_pickaxe2": "Can cause 'debuffs'.",
   "tooltip.cebbite_hoe1": "Destroys all greens in 5 block radius on Shift+RMB.",
