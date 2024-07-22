@@ -2,7 +2,6 @@ package net.undertaker.grimtales.util;
 
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.util.damagesources.GTDamageTypes;
 

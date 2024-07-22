@@ -8,7 +8,6 @@ import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.util.ModDamageTypes;
-import net.undertaker.grimtales.util.damagesources.GTDamageTypes;
 import net.undertaker.grimtales.worldgen.ModBiomeModifiers;
 import net.undertaker.grimtales.worldgen.ModConfiguredFeatures;
 import net.undertaker.grimtales.worldgen.ModPlacedFeatures;
