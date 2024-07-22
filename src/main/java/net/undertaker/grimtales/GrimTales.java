@@ -23,6 +23,8 @@ import net.undertaker.grimtales.item.ModCreativeTabs;
 import net.undertaker.grimtales.item.ModItems;
 import net.undertaker.grimtales.sound.ModSounds;
 import net.undertaker.grimtales.util.ModDamageTypes;
+import net.undertaker.grimtales.util.damagesources.GTDamageSource;
+import net.undertaker.grimtales.util.damagesources.GTDamageTypes;
 import org.slf4j.Logger;
 
 @Mod(GrimTales.MOD_ID)
@@ -40,7 +42,7 @@ public class GrimTales
         ModSounds.register(modEventBus);
         ModEffects.register(modEventBus);
         ModEnchantments.register(modEventBus);
-        ModDamageTypes.register(modEventBus);
+
 
         modEventBus.addListener(this::commonSetup);
 

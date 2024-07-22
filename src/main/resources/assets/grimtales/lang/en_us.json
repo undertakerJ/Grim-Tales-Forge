@@ -30,7 +30,9 @@
   "block.grimtales.sculk_cebbite_ore": "Sculk Cebbite Ore",
   "block.grimtales.deepslate_cebbite_ore": "Deepslate Cebbite Ore",
 
-  "death.attack.grimtales_entropy_effect": "%1$s gone, reduced to atoms",
+  "effect.grimtales.entropy_effect": "Entropy Disintegration",
+
+  "death.attack.grimtales_entropy": "%1$s gone, reduced to atoms",
 
 
   "tooltip.press_shift": "Press Shift for more info",
