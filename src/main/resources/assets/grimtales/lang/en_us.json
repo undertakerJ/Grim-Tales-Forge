@@ -13,12 +13,19 @@
   "item.grimtales.cebbite_chestplate": "Cebbite Chestplate",
   "item.grimtales.cebbite_helmet": "Cebbite Helmet",
   "item.grimtales.astralite_sword": "Astralite Sword",
+  "item.grimtales.astralite_pickaxe": "Astralite Pickaxe",
+  "item.grimtales.astralite_axe": "Astralite Axe",
+  "item.grimtales.astralite_shovel": "Astralite Shovel",
+  "item.grimtales.astralite_hoe": "Astralite Hoe",
+  "item.grimtales.astralite_smithing_upgrade": "Astralite Smithing Upgrade",
+ "item.grimtales.hell_essence": "Hell Essence",
 
   "item.grimtales.essence_crystal": "Essence Crystal",
   "item.grimtales.essence_crystal.fire": "Fire Essence Crystal",
   "item.grimtales.essence_crystal.water": "Water Essence Crystal",
   "item.grimtales.essence_crystal.earth": "Earth Essence Crystal",
   "item.grimtales.essence_crystal.air": "Air Essence Crystal",
+
   "tooltip.grimtales.essence_amount": "Essence Amount: %s",
   "tooltip.grimtales.essence_type": "Essence Type: %s",
 
@@ -30,10 +37,7 @@
   "block.grimtales.sculk_cebbite_ore": "Sculk Cebbite Ore",
   "block.grimtales.deepslate_cebbite_ore": "Deepslate Cebbite Ore",
 
-  "effect.grimtales.entropy_effect": "Entropy Disintegration",
-
   "death.attack.grimtales_entropy": "%1$s gone, reduced to atoms",
-
 
   "tooltip.press_shift": "Press Shift for more info",
   "tooltip.cebbite_pickaxe": "Shows nearby ores in 6 block radius on Shift+RMB.",
@@ -55,8 +59,8 @@
   "tooltip.astral_edge3": "to starting location.",
 
   "sounds.grimtales.troll_laugh": "Troll laughing",
-
-  "effect.grimtales.entropy": "Entropy",
+  "sounds.grimtales.vine_boom": "Vine Boom Effect",
+  "effect.grimtales.entropy_effect": "Entropy",
   "effect.grimtales.blinkstrike": "Blinkstrike",
   "effect.grimtales.armorshred": "Armor Shred",
 

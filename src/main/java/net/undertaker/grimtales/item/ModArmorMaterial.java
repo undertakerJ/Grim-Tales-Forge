@@ -18,7 +18,17 @@ public enum ModArmorMaterial implements ArmorMaterial {
       SoundEvents.ARMOR_EQUIP_IRON,
       1f,
       0.1f,
-      () -> Ingredient.of(ModItems.CEBBITE_INGOT.get()));
+      () -> Ingredient.of(ModItems.CEBBITE_INGOT.get())),
+
+  ASTRALITE(
+      "astralite",
+      20,
+      new int[] {4, 8, 7, 4},
+      30,
+      SoundEvents.ARMOR_EQUIP_IRON,
+      1.25f,
+      0.1f,
+      () -> Ingredient.of(ModItems.ASTRALITE_INGOT.get()));
 
   private final String name;
   private final int durabiltyMultiplier;

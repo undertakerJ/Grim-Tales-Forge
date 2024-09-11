@@ -16,6 +16,7 @@ import net.undertaker.grimtales.effect.ModEffects;
 import net.undertaker.grimtales.enchantment.ModEnchantments;
 import net.undertaker.grimtales.item.ModCreativeTabs;
 import net.undertaker.grimtales.item.ModItems;
+import net.undertaker.grimtales.networking.ModNetworkPackets;
 import net.undertaker.grimtales.sound.ModSounds;
 import org.slf4j.Logger;
 
@@ -46,6 +47,11 @@ public class GrimTales
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        event.enqueueWork(() ->
+        {
+
+        });
+        ModNetworkPackets.register();
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)

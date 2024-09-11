@@ -2,6 +2,7 @@ package net.undertaker.grimtales.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.block.ModBlocks;
@@ -36,9 +38,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
           ModBlocks.DEEPSLATE_CEBBITE_ORE.get());
 
   @Override
-  protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+  protected void buildRecipes(RecipeOutput recipeOutput) {
     oreBlasting(
-        consumer,
+        recipeOutput,
         CEBBITE_SMELTABLES,
         RecipeCategory.MISC,
         ModItems.CEBBITE_INGOT.get(),
@@ -46,7 +48,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         100,
         "cebbite");
     oreSmelting(
-        consumer,
+        recipeOutput,
         CEBBITE_SMELTABLES,
         RecipeCategory.MISC,
         ModItems.CEBBITE_INGOT.get(),
@@ -60,7 +62,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .pattern("CCC")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_SWORD.get())
         .pattern("C")
         .pattern("C")
@@ -68,7 +70,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .define('C', ModItems.CEBBITE_INGOT.get())
         .define('S', Items.STICK)
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_PICKAXE.get())
         .pattern("CCC")
         .pattern(" S ")
@@ -76,7 +78,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .define('C', ModItems.CEBBITE_INGOT.get())
         .define('S', Items.STICK)
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_AXE.get())
         .pattern("CC")
         .pattern("CS")
@@ -84,7 +86,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .define('C', ModItems.CEBBITE_INGOT.get())
         .define('S', Items.STICK)
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_SHOVEL.get())
         .pattern("C")
         .pattern("S")
@@ -92,7 +94,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .define('C', ModItems.CEBBITE_INGOT.get())
         .define('S', Items.STICK)
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_HOE.get())
         .pattern("CC")
         .pattern(" S")
@@ -100,41 +102,58 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .define('C', ModItems.CEBBITE_INGOT.get())
         .define('S', Items.STICK)
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_HELMET.get())
         .pattern("CCC")
         .pattern("C C")
         .define('C', ModItems.CEBBITE_INGOT.get())
-        .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get())).save(consumer);
+        .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_CHESTPLATE.get())
         .pattern("C C")
         .pattern("CCC")
         .pattern("CCC")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_LEGGINGS.get())
         .pattern("CCC")
         .pattern("C C")
         .pattern("C C")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
+        .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_BOOTS.get())
         .pattern("C C")
         .pattern("C C")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
-        .save(consumer);
-
+        .save(recipeOutput);
+    astraliteSmithing(
+        recipeOutput,
+        ModItems.CEBBITE_PICKAXE.get(),
+        RecipeCategory.TOOLS,
+        ModItems.ASTRALITE_PICKAXE.get());
     ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CEBBITE_INGOT.get(), 9)
         .requires(ModBlocks.CEBBITE_BLOCK.get())
         .unlockedBy(getHasName(ModBlocks.CEBBITE_BLOCK.get()), has(ModBlocks.CEBBITE_BLOCK.get()))
-        .save(consumer);
+        .save(recipeOutput);
+  }
+
+  protected static void astraliteSmithing(
+      RecipeOutput recipeOutput, Item pIngredientItem, RecipeCategory pCategory, Item pResultItem) {
+    SmithingTransformRecipeBuilder.smithing(
+            Ingredient.of(new ItemLike[] {ModItems.ASTRALITE_SMITHING_UPGRADE.get()}),
+            Ingredient.of(new ItemLike[] {pIngredientItem}),
+            Ingredient.of(new ItemLike[] {ModItems.ASTRALITE_INGOT.get()}),
+            pCategory,
+            pResultItem)
+        .unlocks("has_astralite_ingot", has((ItemLike) ModItems.ASTRALITE_INGOT.get()))
+        .save(recipeOutput, getItemName(pResultItem) + "_smithing");
   }
 
   protected static void oreSmelting(
-      Consumer<FinishedRecipe> pFinishedRecipeConsumer,
+      RecipeOutput recipeOutput,
       List<ItemLike> pIngredients,
       RecipeCategory pCategory,
       ItemLike pResult,
@@ -142,7 +161,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
       int pCookingTIme,
       String pGroup) {
     oreCooking(
-        pFinishedRecipeConsumer,
+        recipeOutput,
         RecipeSerializer.SMELTING_RECIPE,
         pIngredients,
         pCategory,
@@ -154,7 +173,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
   }
 
   protected static void oreBlasting(
-      Consumer<FinishedRecipe> pFinishedRecipeConsumer,
+      RecipeOutput recipeOutput,
       List<ItemLike> pIngredients,
       RecipeCategory pCategory,
       ItemLike pResult,
@@ -162,7 +181,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
       int pCookingTime,
       String pGroup) {
     oreCooking(
-        pFinishedRecipeConsumer,
+        recipeOutput,
         RecipeSerializer.BLASTING_RECIPE,
         pIngredients,
         pCategory,
@@ -174,7 +193,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
   }
 
   protected static void oreCooking(
-      Consumer<FinishedRecipe> pFinishedRecipeConsumer,
+      RecipeOutput recipeOutput,
       RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer,
       List<ItemLike> pIngredients,
       RecipeCategory pCategory,
@@ -197,7 +216,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
           .group(pGroup)
           .unlockedBy(getHasName(itemlike), has(itemlike))
           .save(
-              pFinishedRecipeConsumer,
+              recipeOutput,
               GrimTales.MOD_ID
                   + ":"
                   + getItemName(pResult)

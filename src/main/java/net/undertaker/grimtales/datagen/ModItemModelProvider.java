@@ -43,14 +43,25 @@ public class ModItemModelProvider extends ItemModelProvider {
     registerModel(ModItems.RAW_CEBBITE_ORE, "generated");
     registerModel(ModItems.ASTRALITE_INGOT, "generated");
     registerModel(ModItems.NEGRI_PIDORASI_MUSIC_DISK, "generated");
+    registerModel(ModItems.ESSENCE_CRYSTAL, "generated");
+    registerModel(ModItems.ASTRALITE_SMITHING_UPGRADE, "generated");
+    registerModel(ModItems.HELL_ESSENCE, "generated");
+
     registerModel(ModItems.CEBBITE_PICKAXE, "handheld");
     registerModel(ModItems.CEBBITE_SWORD, "handheld");
     registerModel(ModItems.CEBBITE_AXE, "handheld");
     registerModel(ModItems.CEBBITE_SHOVEL, "handheld");
     registerModel(ModItems.CEBBITE_HOE, "handheld");
-    registerModel(ModItems.ASTRAL_EDGE, "handheld");
+
+    registerModel(ModItems.ASTRALITE_PICKAXE, "handheld");
     registerModel(ModItems.ASTRALITE_SWORD, "handheld");
-    registerModel(ModItems.ESSENCE_CRYSTAL, "generated");
+    registerModel(ModItems.ASTRALITE_HOE, "handheld");
+    registerModel(ModItems.ASTRALITE_AXE, "handheld");
+    registerModel(ModItems.ASTRALITE_SHOVEL, "handheld");
+
+
+    registerModel(ModItems.ASTRAL_EDGE, "handheld");
+
 
     trimmedArmorItem(ModItems.CEBBITE_BOOTS);
     trimmedArmorItem(ModItems.CEBBITE_LEGGINGS);

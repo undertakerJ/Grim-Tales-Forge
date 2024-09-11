@@ -10,8 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.item.custom.*;
-import net.undertaker.grimtales.item.custom.astralite.AstraliteHoeItem;
-import net.undertaker.grimtales.item.custom.astralite.AstraliteSwordItem;
+import net.undertaker.grimtales.item.custom.astralite.*;
 import net.undertaker.grimtales.item.custom.cebbite.*;
 import net.undertaker.grimtales.sound.ModSounds;
 
@@ -24,7 +23,11 @@ public class ModItems {
   public static final RegistryObject<Item> CEBBITE_INGOT =
       ITEMS.register("cebbite_ingot", () -> new Item(new Item.Properties()));
   public static final RegistryObject<Item> ASTRALITE_INGOT =
-      ITEMS.register("astralite_ingot", () -> new Item(new Item.Properties()));
+      ITEMS.register("astralite_ingot", () -> new Item(new Item.Properties().fireResistant()));
+  public static final RegistryObject<Item> HELL_ESSENCE =
+      ITEMS.register("hell_essence", () -> new Item(new Item.Properties().fireResistant()));
+  public static final RegistryObject<Item> ASTRALITE_SMITHING_UPGRADE =
+      ITEMS.register("astralite_smithing_upgrade", () -> new Item(new Item.Properties()));
 
   // TOOLS
   public static final RegistryObject<Item> CEBBITE_PICKAXE =
@@ -43,8 +46,16 @@ public class ModItems {
       ITEMS.register("astralite_sword", AstraliteSwordItem::new);
   public static final RegistryObject<Item> ASTRALITE_HOE =
       ITEMS.register("astralite_hoe", AstraliteHoeItem::new);
+  public static final RegistryObject<Item> ASTRALITE_PICKAXE =
+      ITEMS.register("astralite_pickaxe", AstralitePickaxeItem::new);
+  public static final RegistryObject<Item> ASTRALITE_AXE =
+      ITEMS.register("astralite_axe", AstraliteAxeItem::new);
+  public static final RegistryObject<Item> ASTRALITE_SHOVEL =
+      ITEMS.register("astralite_shovel", AstraliteShovelItem::new);
 
   // ARMOR
+
+  // CEBBITE
   public static final RegistryObject<Item> CEBBITE_BOOTS =
       ITEMS.register(
           "cebbite_boots",
@@ -75,6 +86,40 @@ public class ModItems {
           () ->
               new ModArmorItem(
                   ModArmorMaterial.CEBBITE,
+                  ArmorItem.Type.HELMET,
+                  new Item.Properties().rarity(Rarity.RARE)));
+
+  // ASTRALITE
+  public static final RegistryObject<Item> ASTRALITE_BOOTS =
+      ITEMS.register(
+          "astralite_boots",
+          () ->
+              new ModArmorItem(
+                  ModArmorMaterial.ASTRALITE,
+                  ArmorItem.Type.BOOTS,
+                  new Item.Properties().rarity(Rarity.RARE)));
+  public static final RegistryObject<Item> ASTRALITE_LEGGINGS =
+      ITEMS.register(
+          "astralite_leggings",
+          () ->
+              new ModArmorItem(
+                  ModArmorMaterial.ASTRALITE,
+                  ArmorItem.Type.LEGGINGS,
+                  new Item.Properties().rarity(Rarity.RARE)));
+  public static final RegistryObject<Item> ASTRALITE_CHESTPLATE =
+      ITEMS.register(
+          "astralite_chestplate",
+          () ->
+              new ModArmorItem(
+                  ModArmorMaterial.ASTRALITE,
+                  ArmorItem.Type.CHESTPLATE,
+                  new Item.Properties().rarity(Rarity.RARE)));
+  public static final RegistryObject<Item> ASTRALITE_HELMET =
+      ITEMS.register(
+          "astralite_helmet",
+          () ->
+              new ModArmorItem(
+                  ModArmorMaterial.ASTRALITE,
                   ArmorItem.Type.HELMET,
                   new Item.Properties().rarity(Rarity.RARE)));
 

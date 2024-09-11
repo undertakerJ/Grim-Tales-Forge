@@ -14,6 +14,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -29,16 +30,28 @@ public class BlinkStrikeEffect extends MobEffect {
     @Override
     public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
         if (!(livingEntity instanceof Player player)) return;
+
         float radius = 8f;
         AABB searchArea = livingEntity.getBoundingBox().inflate(radius);
         Level level = livingEntity.level();
         List<Entity> targets =
                 level.getEntities(livingEntity, searchArea, target -> shouldTarget(player, target));
-        if (targets.isEmpty()) {
+        if (targets.isEmpty() || (targets.get(0) instanceof Slime)){
+
             livingEntity.removeEffect(ModEffects.BLINKSTRIKE.get());
+            CompoundTag playerData = livingEntity.getPersistentData();
+            CompoundTag positionTag = playerData.getCompound("BlinkStrikeHome");
+            double x = positionTag.getDouble("X");
+            double y = positionTag.getDouble("Y");
+            double z = positionTag.getDouble("Z");
+            livingEntity.teleportTo(x, y, z);
+            playerData.remove("BlinkStrikeTargets");
+            player.getCooldowns().addCooldown(ModItems.ASTRAL_EDGE.get(), 15*20);
+
             return;
         }
         Entity target = targets.get(0);
+        if(target instanceof Slime) return;
         Vec3 tpPos = target.position().add(target.getLookAngle().multiply(-1, 0, -1));
         Vec3 lookPos = target.position().add(0, player.getEyeHeight(), 0);
         livingEntity.teleportTo(tpPos.x, tpPos.y, tpPos.z);
@@ -70,22 +83,9 @@ public class BlinkStrikeEffect extends MobEffect {
         return target instanceof LivingEntity && target.isAlive();
     }
 
-    @Override
-    public void removeAttributeModifiers(
-            @NotNull LivingEntity livingEntity, @NotNull AttributeMap pAttributeMap, int pAmplifier) {
-        CompoundTag playerData = livingEntity.getPersistentData();
-        CompoundTag positionTag = playerData.getCompound("BlinkStrikeHome");
-        double x = positionTag.getDouble("X");
-        double y = positionTag.getDouble("Y");
-        double z = positionTag.getDouble("Z");
-        livingEntity.teleportTo(x, y, z);
-        playerData.remove("BlinkStrikeTargets");
-        Player player = (Player) livingEntity;
-        player.getCooldowns().addCooldown(ModItems.ASTRAL_EDGE.get(), 15*20);
-    }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return duration % 14 == 0;
     }
 }

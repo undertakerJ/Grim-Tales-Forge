@@ -100,8 +100,8 @@ public class CebbitePickaxeItem extends PickaxeItem {
           }
         }
       }
+      player.getCooldowns().addCooldown(this, 20 * 5);
     }
-    player.getCooldowns().addCooldown(this, 20 * 5);
     if (!player.isCreative() || !player.isSpectator() && !level.isClientSide() && player.isShiftKeyDown()) {
       if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120 * 20, 1));

@@ -49,8 +49,8 @@ public class AstralitePickaxeItem extends PickaxeItem {
                     }
                 }
             }
+            player.getCooldowns().addCooldown(this, 20 * 5);
         }
-        player.getCooldowns().addCooldown(this, 20 * 5);
         if (!player.isCreative() || !player.isSpectator() && !level.isClientSide() && player.isShiftKeyDown()) {
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 5 * 20, 0));
                 ItemStack handItem = player.getMainHandItem();

@@ -14,8 +14,10 @@ public class ModSounds {
 
     public static final RegistryObject<SoundEvent> TROLL_LAUGH =
             registerSoundEvents("troll_laugh");
-public static final RegistryObject<SoundEvent> NEGRI_PIDORASI =
+    public static final RegistryObject<SoundEvent> NEGRI_PIDORASI =
             registerSoundEvents("negri_pidorasi");
+    public static final RegistryObject<SoundEvent> VINE_BOOM =
+            registerSoundEvents("vine_boom");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(GrimTales.MOD_ID, name)));

@@ -5,6 +5,12 @@
       "grimtales:troll_laugh"
     ]
   },
+  "vine_boom": {
+    "subtitle": "sounds.grimtales.vine_boom",
+    "sounds": [
+      "grimtales:vine_boom"
+    ]
+  },
  "negri_pidorasi": {
    "sounds": [
      {

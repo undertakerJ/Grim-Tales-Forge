@@ -1,5 +1,10 @@
-// 1.20.1	2024-07-18T19:19:48.6929094	Item Models: grimtales
+// 1.20.2	2024-09-10T15:34:42.6024899	Item Models: grimtales
+dc50f37c1857a02dcc9b5a6df316bc49a5410bc8 assets/grimtales/models/item/astralite_axe.json
+f722ccbf2aad8c5b8fdda0940777ae77947452e1 assets/grimtales/models/item/astralite_hoe.json
 a76c5aff4b091becd0355bc4bb661c466b1ff75e assets/grimtales/models/item/astralite_ingot.json
+b08114d85eaac75ad40f335bf97e5a0b324c7a13 assets/grimtales/models/item/astralite_pickaxe.json
+30838211e6d051646272b1f09811629c116303ef assets/grimtales/models/item/astralite_shovel.json
+6fbc5821722ddb7b4eff7e05cec1be076ca5686e assets/grimtales/models/item/astralite_smithing_upgrade.json
 000b7fffa364f65a4ae1e0e288d82ff80d6ec276 assets/grimtales/models/item/astralite_sword.json
 9367e5fd09de5b61ce0bab17fc8d6e6975692c4d assets/grimtales/models/item/astral_edge.json
 7723e5a4e6756c355b538d11e9d6323670266824 assets/grimtales/models/item/cebbite_axe.json
@@ -53,5 +58,6 @@ bc9f6eeb6022c8ed5596d10f15e5b7320517a345 assets/grimtales/models/item/cebbite_le
 d9ba0eb0dee548e7a6bb2be711300bd9a92164e4 assets/grimtales/models/item/cebbite_shovel.json
 97e126a558a8898a0ff338dc624332ef5566ab3a assets/grimtales/models/item/cebbite_sword.json
 5e77a4455655621c76846143c688d05f38efae5d assets/grimtales/models/item/essence_crystal.json
+560078902079eac8503554697c31b4849876a41e assets/grimtales/models/item/hell_essence.json
 deac06990a68507d9324dbb099277d04c582c467 assets/grimtales/models/item/negri_pidorasi_music_disc.json
 ab976acccbd9b5c212c910334aa05c0b08f1d83d assets/grimtales/models/item/raw_cebbite_ore.json
