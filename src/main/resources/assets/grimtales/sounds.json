@@ -11,6 +11,24 @@
       "grimtales:vine_boom"
     ]
   },
+  "capybara_attacked": {
+    "subtitle": "sounds.grimtales.capybara_attacked",
+    "sounds": [
+      "grimtales:capybara_attacked"
+    ]
+  },
+  "capybara_ambient": {
+    "subtitle": "sounds.grimtales.capybara_ambient",
+    "sounds": [
+      "grimtales:capybara_ambient"
+    ]
+  },
+  "capybara_ambient1": {
+    "subtitle": "sounds.grimtales.capybara_ambient1",
+    "sounds": [
+      "grimtales:capybara_ambient1"
+    ]
+  },
  "negri_pidorasi": {
    "sounds": [
      {

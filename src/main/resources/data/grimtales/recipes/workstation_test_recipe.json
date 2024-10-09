@@ -1,0 +1,12 @@
+{
+  "type": "grimtales:workstation",
+  "ingredients": [
+    {
+      "item": "grimtales:adamantite_ingot"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "item.grimtales.raw_adamantite"
+  }
+}

@@ -9,6 +9,6 @@ public class ModDamageTypes{
 
   public static void bootstrap(BootstapContext<DamageType> context)
   {
-    context.register(GTDamageTypes.ENTROPY_KEY, new DamageType(GrimTales.MOD_ID + "entropy", 0.1f));
+    context.register(GTDamageTypes.ENTROPY_KEY, new DamageType(GrimTales.MOD_ID + "_entropy", 0.1f));
   }
 }

@@ -13,6 +13,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -52,7 +53,8 @@ public class CebbiteShovelItem extends ShovelItem {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 0));
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 15 * 20, 0));
       }
-      player.level().destroyBlock(blockPos, false);
+      event.setCanceled(true);
+      player.level().setBlock(blockPos, Blocks.AIR.defaultBlockState(), 3);
     }
   }
   @Override

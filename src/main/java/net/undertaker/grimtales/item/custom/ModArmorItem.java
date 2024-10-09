@@ -61,10 +61,10 @@ public class ModArmorItem extends ArmorItem {
     private boolean hasFullSuitOfArmorOn(Player player) {
         ItemStack boots = player.getInventory().getArmor(0);
         ItemStack leggings = player.getInventory().getArmor(1);
-        ItemStack breastplate = player.getInventory().getArmor(2);
+        ItemStack chestplate = player.getInventory().getArmor(2);
         ItemStack helmet = player.getInventory().getArmor(3);
 
-        return !helmet.isEmpty() && !breastplate.isEmpty()
+        return !helmet.isEmpty() && !chestplate.isEmpty()
                 && !leggings.isEmpty() && !boots.isEmpty();
     }
 
@@ -77,10 +77,10 @@ public class ModArmorItem extends ArmorItem {
 
         ArmorItem boots = ((ArmorItem)player.getInventory().getArmor(0).getItem());
         ArmorItem leggings = ((ArmorItem)player.getInventory().getArmor(1).getItem());
-        ArmorItem breastplate = ((ArmorItem)player.getInventory().getArmor(2).getItem());
+        ArmorItem chestplate = ((ArmorItem)player.getInventory().getArmor(2).getItem());
         ArmorItem helmet = ((ArmorItem)player.getInventory().getArmor(3).getItem());
 
-        return helmet.getMaterial() == material && breastplate.getMaterial() == material &&
+        return helmet.getMaterial() == material && chestplate.getMaterial() == material &&
                 leggings.getMaterial() == material && boots.getMaterial() == material;
     }
 

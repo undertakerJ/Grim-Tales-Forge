@@ -15,6 +15,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.undertaker.grimtales.GrimTales;
+import net.undertaker.grimtales.datagen.loot.ModGlobalLootModifiersProvider;
 import net.undertaker.grimtales.util.ModDamageTypes;
 
 import java.util.HashSet;
@@ -34,19 +35,25 @@ public class DataGenerators {
     CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
     generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput));
+
     generator.addProvider(event.includeServer(), ModLootTableProvider.create(packOutput));
 
     generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, helper));
+
     generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, helper));
 
     ModBlockTagProvider blockTagProvider =
         generator.addProvider(
             event.includeServer(), new ModBlockTagProvider(packOutput, lookupProvider, helper));
+
     generator.addProvider(
         event.includeServer(),
         new ModItemTagProvider(
             packOutput, lookupProvider, blockTagProvider.contentsGetter(), helper));
+
     generator.addProvider(
         event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
+
+    generator.addProvider(event.includeServer(), new ModGlobalLootModifiersProvider(packOutput));
   }
 }

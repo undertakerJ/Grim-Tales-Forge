@@ -5,7 +5,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -27,6 +29,7 @@ import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.block.ModBlocks;
 import net.undertaker.grimtales.item.ModToolTiers;
 import net.undertaker.grimtales.sound.ModSounds;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -59,66 +62,63 @@ public class CebbitePickaxeItem extends PickaxeItem {
   }
 
   @Override
-  public InteractionResult useOn(UseOnContext context) {
-
-    BlockPos posClicked = context.getClickedPos();
-    Level level = context.getLevel();
-    Player player = context.getPlayer();
-    if (!level.isClientSide() && player.isShiftKeyDown()) {
+  public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    if (!level.isClientSide && player.isShiftKeyDown()) {
       if (player.getRandom().nextFloat() <= 0.1f) {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15 * 20, 0));
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 0));
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 15 * 20, 0));
       }
       int searchRadius = 6;
-      for (int x = posClicked.getX() - searchRadius; x <= posClicked.getX() + searchRadius; x++) {
-        for (int y = posClicked.getY() - searchRadius; y < posClicked.getY() + searchRadius; y++) {
-          for (int z = posClicked.getZ() - searchRadius;
-              z <= posClicked.getZ() + searchRadius;
-              z++) {
+      for (int x = player.getBlockX() - searchRadius; x <= player.getX() + searchRadius; x++) {
+        for (int y = player.getBlockY() - searchRadius; y < player.getY() + searchRadius; y++) {
+          for (int z = player.getBlockZ() - searchRadius; z <= player.getZ() + searchRadius; z++) {
             BlockPos pos = new BlockPos(x, y, z);
             Slime slime = new Slime(EntityType.SLIME, level);
             BlockState blockState = level.getBlockState(pos);
             if (isOre(blockState)) {
-              slime.setGlowingTag(true);
-              slime.setSilent(true);
-              slime.addEffect(
-                  new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 5, 0, false, false, false));
-              slime.setNoAi(true);
-              slime.setInvulnerable(true);
-              slime.setNoGravity(true);
-              PlayerTeam team = getTeamForOre(level, blockState);
-              slime.setPos(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
-              slime.setDeltaMovement(0D, 0D, 0D);
-              slime.setYBodyRot(0F);
-              slime.setXRot(0f);
-              slime.setYHeadRot(0f);
-              slime.setYRot(0f);
-              level.getScoreboard().addPlayerToTeam(slime.getScoreboardName(), team);
-              level.addFreshEntity(slime);
+              spawnSlime(slime, level, blockState, pos);
             }
           }
         }
       }
       player.getCooldowns().addCooldown(this, 20 * 5);
-    }
-    if (!player.isCreative() || !player.isSpectator() && !level.isClientSide() && player.isShiftKeyDown()) {
       if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120 * 20, 1));
         player.getCooldowns().addCooldown(this, 20 * 120);
-        level.playSound(null, posClicked, ModSounds.TROLL_LAUGH.get(), SoundSource.AMBIENT, 1, 1);
+        level.playSound(
+            null,
+            new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()),
+            ModSounds.TROLL_LAUGH.get(),
+            SoundSource.AMBIENT,
+            1,
+            1);
       } else {
-
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15 * 20, 0));
         ItemStack handItem = player.getMainHandItem();
         handItem.hurtAndBreak(
-            50,
-            context.getPlayer(),
-            player1 -> player.broadcastBreakEvent(player.getUsedItemHand()));
+            50, player, player1 -> player.broadcastBreakEvent(player.getUsedItemHand()));
       }
     }
+    return InteractionResultHolder.pass(new ItemStack(this));
+  }
 
-    return super.useOn(context);
+  private static void spawnSlime(Slime slime, Level level, BlockState blockState, BlockPos pos) {
+    slime.setGlowingTag(true);
+    slime.setSilent(true);
+    slime.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 5, 0, false, false, false));
+    slime.setNoAi(true);
+    slime.setInvulnerable(true);
+    slime.setNoGravity(true);
+    PlayerTeam team = getTeamForOre(level, blockState);
+    slime.setPos(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
+    slime.setDeltaMovement(0D, 0D, 0D);
+    slime.setYBodyRot(0F);
+    slime.setXRot(0f);
+    slime.setYHeadRot(0f);
+    slime.setYRot(0f);
+    level.getScoreboard().addPlayerToTeam(slime.getScoreboardName(), team);
+    level.addFreshEntity(slime);
   }
 
   @SubscribeEvent

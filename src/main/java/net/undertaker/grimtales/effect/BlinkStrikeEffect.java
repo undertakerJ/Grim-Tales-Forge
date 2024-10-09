@@ -83,9 +83,8 @@ public class BlinkStrikeEffect extends MobEffect {
         return target instanceof LivingEntity && target.isAlive();
     }
 
-
     @Override
-    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
-        return duration % 14 == 0;
+    public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
+        return pDuration % 14 == 0;
     }
 }

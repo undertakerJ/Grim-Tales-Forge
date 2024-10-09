@@ -18,6 +18,12 @@ public class ModSounds {
             registerSoundEvents("negri_pidorasi");
     public static final RegistryObject<SoundEvent> VINE_BOOM =
             registerSoundEvents("vine_boom");
+    public static final RegistryObject<SoundEvent> CAPYBARA_AMBIENT =
+            registerSoundEvents("capybara_ambient");
+    public static final RegistryObject<SoundEvent> CAPYBARA_AMBIENT1 =
+            registerSoundEvents("capybara_ambient1");
+    public static final RegistryObject<SoundEvent> CAPYBARA_ATTACKED =
+            registerSoundEvents("capybara_attacked");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(GrimTales.MOD_ID, name)));

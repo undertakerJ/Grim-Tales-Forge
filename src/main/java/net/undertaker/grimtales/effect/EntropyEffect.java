@@ -29,7 +29,7 @@ public class EntropyEffect extends MobEffect {
 
 
     @Override
-    public boolean shouldApplyEffectTickThisTick(int pDuration, int pAmplifier) {
+    public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
       int i;
       i = 25 >> pAmplifier;
       if (i > 0) {

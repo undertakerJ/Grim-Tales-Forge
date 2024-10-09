@@ -1,8 +1,12 @@
 package net.undertaker.grimtales.item.custom.astralite;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -12,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -21,25 +26,47 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.block.ModBlocks;
 import net.undertaker.grimtales.item.ModToolTiers;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = GrimTales.MOD_ID)
 public class AstralitePickaxeItem extends PickaxeItem {
     public AstralitePickaxeItem() {
         super(ModToolTiers.ASTRALITE, 1, -3, new Properties().rarity(Rarity.RARE).fireResistant());
     }
+
     @Override
-    public InteractionResult useOn(UseOnContext context) {
-        BlockPos posClicked = context.getClickedPos();
-        Level level = context.getLevel();
-        Player player = context.getPlayer();
-        if (!level.isClientSide() && player.isShiftKeyDown()) {
+    public void appendHoverText(
+            ItemStack itemStack,
+            @org.jetbrains.annotations.Nullable Level level,
+            List<Component> components,
+            TooltipFlag tooltipFlag) {
+        if (Screen.hasShiftDown()) {
+            components.add(
+                    Component.translatable("tooltip.grimtales.astralite_pickaxe").withStyle(ChatFormatting.GRAY));
+            components.add(
+                    Component.translatable("tooltip.cebbite_pickaxe1").withStyle(ChatFormatting.GRAY));
+
+        } else {
+            components.add(
+                    Component.translatable("tooltip.press_shift").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        super.appendHoverText(itemStack, level, components, tooltipFlag);
+    }
+
+
+    @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand pUsedHand) {
+        if (!level.isClientSide && player.isShiftKeyDown()) {
             int searchRadius = 10;
-            for (int x = posClicked.getX() - searchRadius; x <= posClicked.getX() + searchRadius; x++) {
-                for (int y = posClicked.getY() - searchRadius; y < posClicked.getY() + searchRadius; y++) {
-                    for (int z = posClicked.getZ() - searchRadius;
-                         z <= posClicked.getZ() + searchRadius;
-                         z++) {
+            for (int x = player.getBlockX() - searchRadius; x <= player.getX() + searchRadius; x++) {
+                for (int y = player.getBlockY() - searchRadius; y < player.getY() + searchRadius; y++) {
+                    for (int z = player.getBlockZ() - searchRadius; z <= player.getZ() + searchRadius; z++) {
                         BlockPos pos = new BlockPos(x, y, z);
                         Slime slime = new Slime(EntityType.SLIME, level);
                         BlockState blockState = level.getBlockState(pos);
@@ -50,24 +77,20 @@ public class AstralitePickaxeItem extends PickaxeItem {
                 }
             }
             player.getCooldowns().addCooldown(this, 20 * 5);
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 5 * 20, 0));
+            ItemStack handItem = player.getMainHandItem();
+            handItem.hurtAndBreak(
+                    25,
+                    player,
+                    player1 -> player.broadcastBreakEvent(player.getUsedItemHand()));
         }
-        if (!player.isCreative() || !player.isSpectator() && !level.isClientSide() && player.isShiftKeyDown()) {
-                player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 5 * 20, 0));
-                ItemStack handItem = player.getMainHandItem();
-                handItem.hurtAndBreak(
-                        25,
-                        context.getPlayer(),
-                        player1 -> player.broadcastBreakEvent(player.getUsedItemHand()));
-        }
-
-        return super.useOn(context);
+    return InteractionResultHolder.pass(new ItemStack(this));
     }
 
     private static void spawnSlime(Slime slime, Level level, BlockState blockState, BlockPos pos) {
         slime.setGlowingTag(true);
         slime.setSilent(true);
-        slime.addEffect(
-                new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 8, 0, false, false, false));
+        slime.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 5, 0, false, false, false));
         slime.setNoAi(true);
         slime.setInvulnerable(true);
         slime.setNoGravity(true);

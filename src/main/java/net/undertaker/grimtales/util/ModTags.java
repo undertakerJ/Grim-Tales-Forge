@@ -15,19 +15,22 @@ import net.undertaker.grimtales.effect.EntropyEffect;
 public class ModTags {
     public static class Blocks{
         public static final TagKey<Block> NEEDS_CEBBITE_TOOL = tag("needs_cebbite_tool");
+        public static final TagKey<Block> NEEDS_ASTRALITE_TOOL = tag("needs_astralite_tool");
+        public static final TagKey<Block> NEEDS_ADAMANTITE_TOOL = tag("needs_adamantite_tool");
 
         private static TagKey<Block> tag(String key){
             return BlockTags.create(new ResourceLocation(GrimTales.MOD_ID, key));
         }
     }
     public static class Items{
+        public static final TagKey<Item> CEBBITE_TOOLS = tag("cebbite_tools");
+        public static final TagKey<Item> ASTRALITE_TOOLS = tag("astralite_tools");
+        public static final TagKey<Item> ADAMANTITE_TOOLS = tag("adamantite_tools");
+
+        public static final TagKey<Item> WORKTOOLS = tag("worktools");
+
         private static TagKey<Item> tag(String key){
             return ItemTags.create(new ResourceLocation(GrimTales.MOD_ID, key));
-        }
-    }
-    public static class DamageTypes{
-        private static TagKey<DamageType> create(String key) {
-            return TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(GrimTales.MOD_ID, key));
         }
     }
 }

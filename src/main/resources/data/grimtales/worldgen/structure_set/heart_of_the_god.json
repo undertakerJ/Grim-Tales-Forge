@@ -1,0 +1,13 @@
+{ "placement": {
+  "type": "minecraft:random_spread",
+  "salt": 345236,
+  "spacing": 12,
+  "separation": 6
+},
+  "structures": [
+    {
+      "structure": "grimtales:heart_of_the_god",
+      "weight": 1
+    }
+  ]
+}

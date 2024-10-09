@@ -1,24 +1,26 @@
 package net.undertaker.grimtales.datagen;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.undertaker.grimtales.GrimTales;
 import net.undertaker.grimtales.block.ModBlocks;
 import net.undertaker.grimtales.item.ModItems;
+import net.undertaker.grimtales.recipe.WorkstationRecipe;
+import net.undertaker.grimtales.util.ModTags;
 
+import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
@@ -38,7 +40,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
           ModBlocks.DEEPSLATE_CEBBITE_ORE.get());
 
   @Override
-  protected void buildRecipes(RecipeOutput recipeOutput) {
+  protected void buildRecipes(Consumer<FinishedRecipe> recipeOutput) {
     oreBlasting(
         recipeOutput,
         CEBBITE_SMELTABLES,
@@ -62,6 +64,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .pattern("CCC")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
+        .save(recipeOutput);
+    shaped(RecipeCategory.MISC, ModBlocks.ASTRALITE_BLOCK.get())
+        .pattern("CCC")
+        .pattern("CCC")
+        .pattern("CCC")
+        .define('C', ModItems.ASTRALITE_INGOT.get())
+        .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
+        .save(recipeOutput);
+    shaped(RecipeCategory.MISC, ModBlocks.ADAMANTITE_BLOCK.get())
+        .pattern("CCC")
+        .pattern("CCC")
+        .pattern("CCC")
+        .define('C', ModItems.ADAMANTITE_INGOT.get())
+        .unlockedBy(
+            getHasName(ModItems.ADAMANTITE_INGOT.get()), has(ModItems.ADAMANTITE_INGOT.get()))
         .save(recipeOutput);
     shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_SWORD.get())
         .pattern("C")
@@ -103,57 +120,109 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .define('S', Items.STICK)
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
         .save(recipeOutput);
-    shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_HELMET.get())
+    shaped(RecipeCategory.COMBAT, ModItems.CEBBITE_HELMET.get())
         .pattern("CCC")
         .pattern("C C")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
         .save(recipeOutput);
-    shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_CHESTPLATE.get())
+    shaped(RecipeCategory.COMBAT, ModItems.CEBBITE_CHESTPLATE.get())
         .pattern("C C")
         .pattern("CCC")
         .pattern("CCC")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
         .save(recipeOutput);
-    shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_LEGGINGS.get())
+    shaped(RecipeCategory.COMBAT, ModItems.CEBBITE_LEGGINGS.get())
         .pattern("CCC")
         .pattern("C C")
         .pattern("C C")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
         .save(recipeOutput);
-    shaped(RecipeCategory.TOOLS, ModItems.CEBBITE_BOOTS.get())
+    shaped(RecipeCategory.COMBAT, ModItems.CEBBITE_BOOTS.get())
         .pattern("C C")
         .pattern("C C")
         .define('C', ModItems.CEBBITE_INGOT.get())
         .unlockedBy(getHasName(ModItems.CEBBITE_INGOT.get()), has(ModItems.CEBBITE_INGOT.get()))
         .save(recipeOutput);
+    shaped(RecipeCategory.COMBAT, ModItems.UNAWAKEN_ADAMANTITE_HELMET.get())
+        .pattern("CCC")
+        .pattern("C C")
+        .define('C', ModItems.ADAMANTITE_INGOT.get())
+        .unlockedBy(
+            getHasName(ModItems.ADAMANTITE_INGOT.get()), has(ModItems.ADAMANTITE_INGOT.get()))
+        .save(recipeOutput);
+    shaped(RecipeCategory.COMBAT, ModItems.UNAWAKEN_ADAMANTITE_CHESTPLATE.get())
+        .pattern("C C")
+        .pattern("CCC")
+        .pattern("CCC")
+        .define('C', ModItems.ADAMANTITE_INGOT.get())
+        .unlockedBy(
+            getHasName(ModItems.ADAMANTITE_INGOT.get()), has(ModItems.ADAMANTITE_INGOT.get()))
+        .save(recipeOutput);
+    shaped(RecipeCategory.COMBAT, ModItems.UNAWAKEN_ADAMANTITE_LEGGINGS.get())
+        .pattern("CCC")
+        .pattern("C C")
+        .pattern("C C")
+        .define('C', ModItems.ADAMANTITE_INGOT.get())
+        .unlockedBy(
+            getHasName(ModItems.ADAMANTITE_INGOT.get()), has(ModItems.ADAMANTITE_INGOT.get()))
+        .save(recipeOutput);
+    shaped(RecipeCategory.COMBAT, ModItems.UNAWAKEN_ADAMANTITE_BOOTS.get())
+        .pattern("C C")
+        .pattern("C C")
+        .define('C', ModItems.ADAMANTITE_INGOT.get())
+        .unlockedBy(
+            getHasName(ModItems.ADAMANTITE_INGOT.get()), has(ModItems.ADAMANTITE_INGOT.get()))
+        .save(recipeOutput);
+    WorkstationRecipeBuilder.build(
+        recipeOutput,
+        new ItemStack(ModItems.VELESCIL_WOOD_HANDLE.get()),
+        "velescil_wood_handle_from_velescil_log_and_tool",
+        Ingredient.of(ModBlocks.VELESCIL_LOG.get()),
+        Ingredient.of(ModItems.ADAMANTITE_WORKTOOLS.get()));
+
     astraliteSmithing(
         recipeOutput,
         ModItems.CEBBITE_PICKAXE.get(),
         RecipeCategory.TOOLS,
         ModItems.ASTRALITE_PICKAXE.get());
+
     ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CEBBITE_INGOT.get(), 9)
         .requires(ModBlocks.CEBBITE_BLOCK.get())
         .unlockedBy(getHasName(ModBlocks.CEBBITE_BLOCK.get()), has(ModBlocks.CEBBITE_BLOCK.get()))
         .save(recipeOutput);
+
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ASTRALITE_INGOT.get(), 9)
+        .requires(ModBlocks.ASTRALITE_BLOCK.get())
+        .unlockedBy(
+            getHasName(ModBlocks.ASTRALITE_BLOCK.get()), has(ModBlocks.ASTRALITE_BLOCK.get()))
+        .save(recipeOutput);
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ADAMANTITE_INGOT.get(), 9)
+        .requires(ModBlocks.ADAMANTITE_BLOCK.get())
+        .unlockedBy(
+            getHasName(ModBlocks.ADAMANTITE_BLOCK.get()), has(ModBlocks.ADAMANTITE_BLOCK.get()))
+        .save(recipeOutput);
   }
 
   protected static void astraliteSmithing(
-      RecipeOutput recipeOutput, Item pIngredientItem, RecipeCategory pCategory, Item pResultItem) {
+      Consumer<FinishedRecipe> recipeOutput,
+      Item pIngredientItem,
+      RecipeCategory pCategory,
+      Item pResultItem) {
     SmithingTransformRecipeBuilder.smithing(
-            Ingredient.of(new ItemLike[] {ModItems.ASTRALITE_SMITHING_UPGRADE.get()}),
-            Ingredient.of(new ItemLike[] {pIngredientItem}),
-            Ingredient.of(new ItemLike[] {ModItems.ASTRALITE_INGOT.get()}),
+            Ingredient.of(ModItems.ASTRALITE_SMITHING_UPGRADE.get()),
+            Ingredient.of(pIngredientItem),
+            Ingredient.of(ModItems.ASTRALITE_INGOT.get()),
             pCategory,
             pResultItem)
-        .unlocks("has_astralite_ingot", has((ItemLike) ModItems.ASTRALITE_INGOT.get()))
+        .unlocks("has_astralite_ingot", has(ModItems.ASTRALITE_INGOT.get()))
         .save(recipeOutput, getItemName(pResultItem) + "_smithing");
   }
 
   protected static void oreSmelting(
-      RecipeOutput recipeOutput,
+      Consumer<FinishedRecipe> recipeOutput,
       List<ItemLike> pIngredients,
       RecipeCategory pCategory,
       ItemLike pResult,
@@ -173,7 +242,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
   }
 
   protected static void oreBlasting(
-      RecipeOutput recipeOutput,
+      Consumer<FinishedRecipe> recipeOutput,
       List<ItemLike> pIngredients,
       RecipeCategory pCategory,
       ItemLike pResult,
@@ -193,7 +262,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
   }
 
   protected static void oreCooking(
-      RecipeOutput recipeOutput,
+      Consumer<FinishedRecipe> recipeOutput,
       RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer,
       List<ItemLike> pIngredients,
       RecipeCategory pCategory,
@@ -225,4 +294,47 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                   + getItemName(itemlike));
     }
   }
+
+    public static class WorkstationRecipeBuilder {
+        public static void build(
+                Consumer<FinishedRecipe> consumer, ItemStack output, String recipeName, Ingredient... inputs) {
+            consumer.accept(
+                    new FinishedRecipe() {
+                        @Override
+                        public void serializeRecipeData(JsonObject json) {
+                            JsonArray ingredients = new JsonArray();
+                            for (Ingredient input : inputs) {
+                                ingredients.add(input.toJson());
+                            }
+                            json.add("ingredients", ingredients);
+
+                            JsonObject result = new JsonObject();
+                            result.addProperty("item", ForgeRegistries.ITEMS.getKey(output.getItem()).toString());
+                            json.add("output", result);
+                        }
+
+                        @Override
+                        public ResourceLocation getId() {
+                            return new ResourceLocation(GrimTales.MOD_ID, recipeName);
+                        }
+
+                        @Override
+                        public RecipeSerializer<?> getType() {
+                            return WorkstationRecipe.Serializer.INSTANCE;
+                        }
+
+                        @Nullable
+                        @Override
+                        public JsonObject serializeAdvancement() {
+                            return null;
+                        }
+
+                        @Nullable
+                        @Override
+                        public ResourceLocation getAdvancementId() {
+                            return null;
+                        }
+                    });
+        }
+    }
 }

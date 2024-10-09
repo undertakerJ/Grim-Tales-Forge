@@ -1,14 +1,14 @@
 package net.undertaker.grimtales.networking.packet;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraftforge.event.network.CustomPayloadEvent;
+import net.minecraftforge.network.NetworkEvent;
 import net.undertaker.grimtales.sound.ModSounds;
+
+import java.util.function.Supplier;
 
 public class AnvilS2CPacket {
   private int x;
@@ -33,7 +33,8 @@ public class AnvilS2CPacket {
     byteBuf.writeInt(z);
   }
 
-  public boolean handle(CustomPayloadEvent.Context ctx) {
+  public boolean handle(Supplier<NetworkEvent.Context> supplier) {
+    NetworkEvent.Context ctx = supplier.get();
     ctx.enqueueWork(
         () -> {
           Minecraft minecraft = Minecraft.getInstance();

@@ -1,6 +1,10 @@
 package net.undertaker.grimtales;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -12,11 +16,21 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.undertaker.grimtales.block.ModBlocks;
+import net.undertaker.grimtales.block.entity.ModBlockEntities;
 import net.undertaker.grimtales.effect.ModEffects;
 import net.undertaker.grimtales.enchantment.ModEnchantments;
+import net.undertaker.grimtales.entity.ModEntities;
+import net.undertaker.grimtales.entity.client.CapybaraRenderer;
+import net.undertaker.grimtales.fluid.ModFluidBlocks;
+import net.undertaker.grimtales.fluid.ModFluidTypes;
+import net.undertaker.grimtales.fluid.ModFluids;
 import net.undertaker.grimtales.item.ModCreativeTabs;
 import net.undertaker.grimtales.item.ModItems;
+import net.undertaker.grimtales.lootmodifiers.ModLootModifiers;
 import net.undertaker.grimtales.networking.ModNetworkPackets;
+import net.undertaker.grimtales.recipe.ModRecipes;
+import net.undertaker.grimtales.screen.ModMenuTypes;
+import net.undertaker.grimtales.screen.WorkstationScreen;
 import net.undertaker.grimtales.sound.ModSounds;
 import org.slf4j.Logger;
 
@@ -27,7 +41,7 @@ public class GrimTales
     private static final Logger LOGGER = LogUtils.getLogger();
     public GrimTales()
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    @SuppressWarnings("removal") IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
@@ -35,7 +49,14 @@ public class GrimTales
         ModSounds.register(modEventBus);
         ModEffects.register(modEventBus);
         ModEnchantments.register(modEventBus);
-
+        ModLootModifiers.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
+        ModFluidBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -70,6 +91,11 @@ public class GrimTales
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_GOD_WATER.get(), RenderType.solid());
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.FlOWING_GOD_WATER.get(), RenderType.solid());
+            EntityRenderers.register(ModEntities.CAPYBARA.get(), CapybaraRenderer::new);
+
+            MenuScreens.register(ModMenuTypes.WORKSTATION_MENU.get(), WorkstationScreen::new);
         }
     }
     /**

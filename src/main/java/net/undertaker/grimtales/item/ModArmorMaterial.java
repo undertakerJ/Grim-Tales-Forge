@@ -6,6 +6,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.undertaker.grimtales.GrimTales;
+import net.undertaker.grimtales.block.ModBlocks;
 
 import java.util.function.Supplier;
 
@@ -13,13 +14,21 @@ public enum ModArmorMaterial implements ArmorMaterial {
   CEBBITE(
       "cebbite",
       30,
-      new int[] {4, 8, 7, 4},
-      30,
+      new int[] {3, 7, 6, 3},
+      25,
       SoundEvents.ARMOR_EQUIP_IRON,
       1f,
       0.1f,
       () -> Ingredient.of(ModItems.CEBBITE_INGOT.get())),
-
+  CEBBITE_COMBAT(
+      "cebbite_combat",
+      40,
+      new int[] {4, 8, 7, 4},
+      35,
+      SoundEvents.ARMOR_EQUIP_IRON,
+      1.5f,
+      0.2f,
+      () -> Ingredient.of(ModBlocks.CEBBITE_BLOCK.get())),
   ASTRALITE(
       "astralite",
       20,
@@ -28,7 +37,34 @@ public enum ModArmorMaterial implements ArmorMaterial {
       SoundEvents.ARMOR_EQUIP_IRON,
       1.25f,
       0.1f,
-      () -> Ingredient.of(ModItems.ASTRALITE_INGOT.get()));
+      () -> Ingredient.of(ModItems.ASTRALITE_INGOT.get())),
+  ASTRALITE_COMBAT(
+      "astralite_combat",
+      25,
+      new int[] {4, 8, 7, 4},
+      25,
+      SoundEvents.ARMOR_EQUIP_IRON,
+      2f,
+      0.1f,
+      () -> Ingredient.of(ModBlocks.ASTRALITE_BLOCK.get())),
+  UNAWAKEN_ADAMANTITE(
+      "unawaken_adamantite",
+      25,
+      new int[] {3,8,6,3},
+      30,
+      SoundEvents.ARMOR_EQUIP_IRON,
+      1f,
+      0.1f,
+      () -> Ingredient.of(ModItems.ADAMANTITE_INGOT.get())),
+  ADAMANTITE_COMBAT(
+      "adamantite_combat",
+      60,
+      new int[] {5, 10, 9, 5},
+      45,
+      SoundEvents.ARMOR_EQUIP_IRON,
+      3f,
+      0.25f,
+      () -> Ingredient.of(ModBlocks.ADAMANTITE_BLOCK.get()));
 
   private final String name;
   private final int durabiltyMultiplier;

@@ -24,7 +24,7 @@ public class ItemColorRegistry {
                 String essenceType = EssenceCrystalItem.getEssenceType(stack);
                 return switch (essenceType) {
                     case "fire" -> 0xFF4500; // оранжевый
-                    case "water" -> 0x688fcf ; // синий
+                    case "water" -> 0x0077ff ; // синий
                     case "earth" -> 0x23ad49 ; // коричневый
                     case "air" -> 0xfeffc1; // белый
                     default -> 0xFFFFFF; // белый

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:jigsaw",
+  "start_pool": "grimtales:heart_of_the_god/start_pool",
+  "size": 1,
+  "biomes": "#grimtales:has_structure/heart_of_the_god",
+  "step": "underground_structures",
+  "max_distance_from_center": 80,
+  "start_height": {
+    "absolute": 6
+  },
+  "use_expansion_hack": false,
+  "liquid_settings": "ignore_waterlogging",
+  "spawn_overrides": {},
+  "pool_aliases": []
+}
